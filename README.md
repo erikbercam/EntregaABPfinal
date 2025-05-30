@@ -1,47 +1,104 @@
+
 🍕 ABP - Gestoría de Pizzería
-Integrantes del equipo
-Erik Bernabé
-Joel Vila
-Sebastian Ordoñez
-Marti Lopez
+API RESTful desarrollada en Java + Spring Boot para la gestión integral de una pizzería.
 
-Descripción:
+👥 Integrantes del Equipo
+👨‍💻 Erik Bernabé
 
-Este proyecto es una API RESTful desarrollada en Java con Spring Boot, destinada a la gestión integral de una pizzería. Permite manejar información sobre clientes, empleados, pedidos, pizzas, ingredientes, productos, bebidas y direcciones.
+👨‍💻 Joel Vila
 
-Está diseñada para facilitar el trabajo de gestión mediante el uso de endpoints organizados por entidad, con operaciones básicas como obtener datos (GET) y registrar nuevos (POST).
+👨‍💻 Sebastián Ordoñez
 
-La estructura del proyecto sigue el patrón MVC, con paquetes dedicados a controladores, servicios, repositorios, modelos y DTOs, organizados para un mantenimiento y escalabilidad óptimos.
+👨‍💻 Martí López
 
-Endpoints disponibles
-Los endpoints disponibles actualmente son los siguientes, todos accesibles bajo el prefijo /api:
+📌 Descripción del Proyecto
 
-Direcciones
-GET /api/direcciones — Obtener todas las direcciones
+Una solución completa para administrar una pizzería, con endpoints que permiten gestionar:
 
-POST /api/direcciones — Crear una nueva dirección
+📦 Pedidos
 
-Clientes
-GET /api/clientes — Obtener todos los clientes
+👨‍🍳 Empleados
 
-POST /api/clientes — Registrar un nuevo cliente
+🧑 Clientes
 
-Ingredientes
-GET /api/ingredientes — Obtener todos los ingredientes
+🍕 Pizzas
 
-POST /api/ingredientes — Agregar un nuevo ingrediente
+🧂 Ingredientes
 
-Pedidos
-GET /api/pedidos — Listar todos los pedidos
+🥤 Bebidas
 
-POST /api/pedidos — Crear un nuevo pedido
+🏠 Direcciones
 
-Pizzas
-GET /api/pizzas — Ver todas las pizzas
+🔧 Construida siguiendo el patrón MVC, con paquetes organizados en:
 
-POST /api/pizzas — Crear una nueva pizza
+📁 controllers/
+📁 services/
+📁 repositories/
+📁 models/
+📁 dtos/
 
-Empleados
-GET /api/empleados — Obtener todos los empleados
+Diseñada para ser escalable, mantenible y de fácil integración.
 
-POST /api/empleados — Registrar un nuevo empleado
+🌐 Endpoints Disponibles
+
+Todos los endpoints están bajo el prefijo:
+/api
+
+🏠 Direcciones
+GET /api/direcciones → Obtener todas las direcciones
+
+POST /api/direcciones → Crear una nueva dirección
+
+🧑 Clientes
+GET /api/clientes → Obtener todos los clientes
+
+POST /api/clientes → Registrar un nuevo cliente
+
+🧂 Ingredientes
+GET /api/ingredientes → Obtener todos los ingredientes
+
+POST /api/ingredientes → Agregar un nuevo ingrediente
+
+📦 Pedidos
+GET /api/pedidos → Listar todos los pedidos
+
+POST /api/pedidos → Crear un nuevo pedido
+
+🍕 Pizzas
+GET /api/pizzas → Ver todas las pizzas
+
+POST /api/pizzas → Crear una nueva pizza
+
+👨‍🍳 Empleados
+GET /api/empleados → Obtener todos los empleados
+
+POST /api/empleados → Registrar un nuevo empleado
+
+🛠️ Tecnologías Usadas
+
+☕ Java 22
+
+🌱 Spring Boot
+
+🌐 REST API
+
+🐘MySQL
+
+🔁 Spring Data JPA
+
+
+
+🚀 Cómo Ejecutar el Proyecto
+Clona el repositorio
+
+git clone https://github.com/tu_usuario/gestoria-pizzeria.git
+Importa en tu IDE favorito (IntelliJ / Eclipse)
+
+Configura tu application.properties o application.yml con tus datos de BD
+
+Ejecuta la clase principal:
+
+GestoriaPizzeriaApplication.java
+
+Accede a los endpoints en:
+http://localhost:8080/api/
