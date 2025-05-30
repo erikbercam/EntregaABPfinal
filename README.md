@@ -30,6 +30,7 @@ Una solución completa para administrar una pizzería, con endpoints que permite
 
 🏠 Direcciones
 
+
 🔧 Construida siguiendo el patrón MVC, con paquetes organizados en:
 
 📁 controllers/
@@ -39,6 +40,7 @@ Una solución completa para administrar una pizzería, con endpoints que permite
 📁 dtos/
 
 Diseñada para ser escalable, mantenible y de fácil integración.
+
 
 🌐 Endpoints Disponibles
 
@@ -74,6 +76,7 @@ POST /api/pizzas → Crear una nueva pizza
 GET /api/empleados → Obtener todos los empleados
 
 POST /api/empleados → Registrar un nuevo empleado
+
 
 🛠️ Tecnologías Usadas
 
