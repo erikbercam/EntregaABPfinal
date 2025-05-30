@@ -1,9 +1,12 @@
 🍕 ABP - Gestoría de Pizzería
 Integrantes del equipo
 Erik Bernabé
-(Puedes añadir más nombres si hay otros integrantes)
+Joel Vila
+Sebastian Ordoñez
+Marti Lopez
 
-Descripción
+Descripción:
+
 Este proyecto es una API RESTful desarrollada en Java con Spring Boot, destinada a la gestión integral de una pizzería. Permite manejar información sobre clientes, empleados, pedidos, pizzas, ingredientes, productos, bebidas y direcciones.
 
 Está diseñada para facilitar el trabajo de gestión mediante el uso de endpoints organizados por entidad, con operaciones básicas como obtener datos (GET) y registrar nuevos (POST).
