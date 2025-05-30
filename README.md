@@ -3,6 +3,7 @@
 API RESTful desarrollada en Java + Spring Boot para la gestión integral de una pizzería.
 
 👥 Integrantes del Equipo
+
 👨‍💻 Erik Bernabé
 
 👨‍💻 Joel Vila
