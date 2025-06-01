@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzería API Tester</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1><i class="fas fa-pizza-slice"></i> Pizzería API Tester</h1>
+        <div class="api-url">
+            <label for="base-url">API Base URL:</label>
+            <input type="text" id="base-url" value="http://192.168.1.20:8081/api">
+            <button id="save-url">Guardar</button>
+        </div>
+    </header>
+
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="clientes">Clientes</button>
+        <button class="tab-btn" data-tab="pedidos">Pedidos</button>
+        <button class="tab-btn" data-tab="pizzas">Pizzas</button>
+        <button class="tab-btn" data-tab="ingredientes">Ingredientes</button>
+        <button class="tab-btn" data-tab="empleados">Empleados</button>
+        <button class="tab-btn" data-tab="direcciones">Direcciones</button>
+    </div>
+
+    <div class="tab-content active" id="clientes">
+        <div class="endpoint">
+            <h3>Obtener todos los clientes</h3>
+            <div class="endpoint-details">
+                <span class="method get">GET</span>
+                <span class="url">/clientes</span>
+                <button class="try-btn" data-endpoint="clientes">Probar</button>
+            </div>
+            <div class="response"></div>
+        </div>
+
+        <div class="endpoint">
+            <h3>Crear nuevo cliente</h3>
+            <div class="endpoint-details">
+                <span class="method post">POST</span>
+                <span class="url">/clientes</span>
+                <button class="try-btn" data-endpoint="clientes-create">Probar</button>
+            </div>
+            <textarea class="request-body" placeholder='{
+  "nombre": "Juan Pérez",
+  "documento": "12345678A",
+  "email": "juan@email.com",
+  "telefono": "666123456",
+  "direccion": {
+    "calle": "Calle Principal",
+    "numero": "123",
+    "ciudad": "Madrid",
+    "codigoPostal": "28001"
+  }
+}'></textarea>
+            <div class="response"></div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="pedidos">
+        <div class="endpoint">
+            <h3>Obtener pedidos por estado</h3>
+            <div class="endpoint-details">
+                <span class="method get">GET</span>
+                <span class="url">/pedidos/estado/</span>
+                <select class="param" data-param="estado">
+                    <option value="PENDIENTE">PENDIENTE</option>
+                    <option value="EN_PREPARACION">EN_PREPARACION</option>
+                    <option value="EN_CAMINO">EN_CAMINO</option>
+                    <option value="ENTREGADO">ENTREGADO</option>
+                    <option value="CANCELADO">CANCELADO</option>
+                </select>
+                <button class="try-btn" data-endpoint="pedidos-estado">Probar</button>
+            </div>
+            <div class="response"></div>
+        </div>
+
+        <div class="endpoint">
+            <h3>Crear nuevo pedido</h3>
+            <div class="endpoint-details">
+                <span class="method post">POST</span>
+                <span class="url">/pedidos</span>
+                <button class="try-btn" data-endpoint="pedidos-create">Probar</button>
+            </div>
+            <textarea class="request-body" placeholder='{
+  "fechaPedido": "2025-06-01T17:00:00",
+  "total": 25.5,
+  "estado": "PENDIENTE",
+  "clienteId": 1,
+  "repartidorId": 2,
+  "precio": 25.5,
+  "productoIds": [1, 2]
+}'></textarea>
+            <div class="response"></div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="pizzas">
+        <div class="endpoint">
+            <h3>Buscar pizzas por tipo</h3>
+            <div class="endpoint-details">
+                <span class="method get">GET</span>
+                <span class="url">/pizzas/tipo/</span>
+                <select class="param" data-param="tipo">
+                    <option value="MARGARITA">MARGARITA</option>
+                    <option value="PEPPERONI">PEPPERONI</option>
+                    <option value="CUATRO_QUESOS">CUATRO_QUESOS</option>
+                    <option value="VEGETARIANA">VEGETARIANA</option>
+                </select>
+                <button class="try-btn" data-endpoint="pizzas-tipo">Probar</button>
+            </div>
+            <div class="response"></div>
+        </div>
+
+        <div class="endpoint">
+            <h3>Crear nueva pizza</h3>
+            <div class="endpoint-details">
+                <span class="method post">POST</span>
+                <span class="url">/pizzas</span>
+                <button class="try-btn" data-endpoint="pizzas-create">Probar</button>
+            </div>
+            <textarea class="request-body" placeholder='{
+  "nombre": "Margarita",
+  "precio": 8.5,
+  "sinGluten": false,
+  "tipo": "MARGARITA"
+}'></textarea>
+            <div class="response"></div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="ingredientes">
+        <div class="endpoint">
+            <h3>Obtener ingredientes</h3>
+            <div class="endpoint-details">
+                <span class="method get">GET</span>
+                <span class="url">/ingredientes</span>
+                <button class="try-btn" data-endpoint="ingredientes-veganos">Probar</button>
+            </div>
+            <div class="response"></div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="empleados">
+        <div class="endpoint">
+            <h3>Obtener empleados por puesto</h3>
+            <div class="endpoint-details">
+                <span class="method get">GET</span>
+                <span class="url">/empleados/puesto/</span>
+                <select class="param" data-param="puesto">
+                    <option value="COCINERO">COCINERO</option>
+                    <option value="REPARTIDOR">REPARTIDOR</option>
+                    <option value="GERENTE">GERENTE</option>
+                </select>
+                <button class="try-btn" data-endpoint="empleados-puesto">Probar</button>
+            </div>
+            <div class="response"></div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="direcciones">
+        <div class="endpoint">
+            <h3>Buscar direcciones por ciudad</h3>
+            <div class="endpoint-details">
+                <span class="method get">GET</span>
+                <span class="url">/direcciones</span>
+                <button class="try-btn" data-endpoint="direcciones-ciudad">Probar</button>
+            </div>
+            <div class="response"></div>
+        </div>
+
+        <div class="endpoint">
+            <h3>Crear nueva dirección</h3>
+            <div class="endpoint-details">
+                <span class="method post">POST</span>
+                <span class="url">/direcciones</span>
+                <button class="try-btn" data-endpoint="direcciones-create">Probar</button>
+            </div>
+            <textarea class="request-body" placeholder='{
+  "calle": "Gran Vía",
+  "numero": "123",
+  "ciudad": "Madrid",
+  "codigoPostal": "28013"
+}'></textarea>
+            <div class="response"></div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

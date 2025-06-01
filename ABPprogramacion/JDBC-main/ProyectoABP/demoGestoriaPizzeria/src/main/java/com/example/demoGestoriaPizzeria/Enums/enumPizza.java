@@ -1,5 +1,4 @@
 package com.example.demoGestoriaPizzeria.Enums;
-
 public enum enumPizza {
     MARGARITA,
     CUATRO_QUESOS,

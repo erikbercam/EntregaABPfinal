@@ -56,10 +56,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/pizzas")
@@ -97,22 +94,66 @@ public class PizzaController {
     }
 
     @PostMapping
-    public ResponseEntity<Pizza> crearPizza(@RequestBody PizzaDTO dto) {
-        Pizza pizza = new Pizza();
-        pizza.setNombre(dto.nombre);
-        pizza.setDescripcion(dto.descripcion);
-        pizza.setTipo(enumPizza.valueOf(dto.tipo));
-        pizza.setTipoMasa(enumMassa.valueOf(dto.tipoMasa));
-        pizza.setEsSinGluten(dto.esSinGluten);
-        pizza.setPrecio(dto.precio);
-        pizza.setCantidad(dto.cantidad);
+    public ResponseEntity<?> crearPizza(@RequestBody PizzaDTO dto) {
+        try {
+            // Validaciones básicas
+            if (dto.getNombre() == null || dto.getNombre().isBlank()) {
+                return ResponseEntity.badRequest().body("El nombre es obligatorio.");
+            }
+            if (dto.getTipo() == null || dto.getTipoMasa() == null) {
+                return ResponseEntity.badRequest().body("Tipo de pizza y tipo de masa son obligatorios.");
+            }
 
-        Set<Ingrediente> ingredientes = new HashSet<>(ingredienteRepository.findAllById(dto.ingredientes));
-        pizza.setIngredientes(ingredientes);
+            enumPizza tipoEnum;
+            enumMassa tipoMasaEnum;
 
-        pizzaRepository.save(pizza);
-        return ResponseEntity.ok(pizza);
+            try {
+                tipoEnum = enumPizza.valueOf(dto.getTipo().toUpperCase());
+            } catch (IllegalArgumentException e) {
+                return ResponseEntity.badRequest().body("Tipo de pizza inválido: " + dto.getTipo());
+            }
+
+            try {
+                tipoMasaEnum = enumMassa.valueOf(dto.getTipoMasa().toUpperCase());
+            } catch (IllegalArgumentException e) {
+                return ResponseEntity.badRequest().body("Tipo de masa inválido: " + dto.getTipoMasa());
+            }
+
+            // Validar ingredientes
+            if (dto.getIngredientes() == null || dto.getIngredientes().isEmpty()) {
+                return ResponseEntity.badRequest().body("Debe proporcionar al menos un ingrediente.");
+            }
+
+            // ✅ SOLUCIÓN CORRECTA: Copiar la lista antes de convertirla en set
+            List<Ingrediente> ingredientesFromDb = new ArrayList<>(ingredienteRepository.findAllById(dto.getIngredientes()));
+            if (ingredientesFromDb.size() != dto.getIngredientes().size()) {
+                return ResponseEntity.badRequest().body("Uno o más IDs de ingredientes no existen.");
+            }
+
+            Set<Ingrediente> ingredientes = new HashSet<>(ingredientesFromDb);
+
+            // Crear y guardar la pizza
+            Pizza pizza = new Pizza();
+            pizza.setNombre(dto.getNombre());
+            pizza.setDescripcion(dto.getDescripcion());
+            pizza.setTipo(tipoEnum);
+            pizza.setTipoMasa(tipoMasaEnum);
+            pizza.setEsSinGluten(dto.isEsSinGluten());
+            pizza.setPrecio(dto.getPrecio());
+            pizza.setCantidad(dto.getCantidad());
+            pizza.setIngredientes(ingredientes);
+
+            pizzaRepository.save(pizza);
+            return ResponseEntity.status(HttpStatus.CREATED).body(pizza);
+
+        } catch (Exception e) {
+            e.printStackTrace();  // ✅ IMPORTANTE: muestra error real en consola
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al crear la pizza: " + e.getClass().getSimpleName() + " - " +
+                            (e.getMessage() != null ? e.getMessage() : "sin mensaje"));
+        }
     }
+
 
     // Actualizar pizza
     @PutMapping("/{id}")
@@ -191,5 +232,15 @@ public class PizzaController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+    @GetMapping("/tipos")
+    public enumPizza[] obtenerTiposPizza() {
+        return enumPizza.values();
+    }
+
+    @GetMapping("/masas")
+    public enumMassa[] obtenerTiposMasa() {
+        return enumMassa.values();
     }
 }

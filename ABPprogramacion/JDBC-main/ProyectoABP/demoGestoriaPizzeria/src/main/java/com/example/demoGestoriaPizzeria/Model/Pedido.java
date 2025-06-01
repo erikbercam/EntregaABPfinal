@@ -1,6 +1,7 @@
 package com.example.demoGestoriaPizzeria.Model;
 
 import com.example.demoGestoriaPizzeria.Enums.enumEstadoPedido;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,10 +31,12 @@ public class Pedido {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
+    @JsonIgnore
     private Cliente cliente;
 
     @ManyToOne
     @JoinColumn(name = "empleado_id")
+    @JsonIgnore
     private Empleado repartidor;
 
     private double precio;

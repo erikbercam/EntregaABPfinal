@@ -1,5 +1,6 @@
 package com.example.demoGestoriaPizzeria.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,5 +19,6 @@ public class Direccion {
     private String codigoPostal;
 
     @OneToMany(mappedBy = "direccion")
+    @JsonIgnore
     private List<Persona> personas;
 }

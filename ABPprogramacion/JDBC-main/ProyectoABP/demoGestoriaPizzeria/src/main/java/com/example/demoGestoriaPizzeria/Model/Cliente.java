@@ -1,5 +1,6 @@
 package com.example.demoGestoriaPizzeria.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,5 +18,6 @@ public class Cliente extends Persona{
 //    private Long id;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+
     private List<Pedido> pedidos;
 }

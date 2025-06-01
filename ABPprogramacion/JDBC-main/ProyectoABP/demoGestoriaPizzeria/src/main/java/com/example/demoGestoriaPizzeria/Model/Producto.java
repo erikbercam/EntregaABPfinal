@@ -1,8 +1,10 @@
 package com.example.demoGestoriaPizzeria.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -22,5 +24,6 @@ public abstract class Producto {
             name = "pedido_producto",
             joinColumns = @JoinColumn(name = "producto_id"),
             inverseJoinColumns = @JoinColumn(name = "pedido_id"))
-    private Set<Pedido> pedidos;
+    @JsonIgnore
+    private Set<Pedido> pedidos = new HashSet<>();
 }
