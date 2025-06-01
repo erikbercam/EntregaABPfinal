@@ -1,3 +1,4 @@
+(!! PARA LOS ENDPOINTS DE PRUEBA, USAR LAS ESTRUCTURAS BASE DE CUERPO JSON IMPLEMENTADAS EN LA WEB DE PRUEBAS!!, GRACIAS.)
 
 🍕 ABP - Gestoría de Pizzería
 API RESTful desarrollada en Java + Spring Boot para la gestión integral de una pizzería.
